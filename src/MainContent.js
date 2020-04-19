@@ -2,8 +2,8 @@ import React from "react";
 
 function MainContent(props) {
   return (
-    <div className="row">{props.children}
-    <br/><br/>
+    <div className="row content">{props.children}
+    
     </div>
 
   )

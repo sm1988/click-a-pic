@@ -3,13 +3,12 @@ import CountryCard from "./CountryCard";
 import Wrapper from "./Wrapper";
 import Navbar from "./Navbar";
 import MainContent from "./MainContent"
-import Jumbotron from "./Jumbotron";
-import characters from "./characters.json";
+import countries from "./countries.json";
 import "./App.css";
 
 class App extends Component {
   state = {
-    characters,
+    countries,
     highScore: 0,
     currentScore: 0,
     Clicked: false
@@ -22,26 +21,27 @@ class App extends Component {
   };
 
   handleScore = id => {
-    this.state.characters.forEach(element => {
+    this.state.countries.forEach(element => {
       if (id === element.id && element.clicked === false) {
         element.clicked = true;
         this.setState({ Clicked: false });
         this.handleIncrement();
       } else if (id === element.id && element.clicked === true) {
-        if (this.state.currentScore > this.state.highScore) {
+        if (this.state.currentScore > this.state.highScore && 12) {
           this.setState({ highScore: this.state.currentScore });
+          alert("Sheldon says : BAZZZZINGAAAA!!!!");
         }
         this.setState({ currentScore: 0 });
         this.setState({ Clicked: true });
-        this.state.characters.forEach(element => (element.clicked = false));
-        console.log(this.state.characters);
+        this.state.countries.forEach(element => (element.clicked = false));
+        console.log(this.state.countries);
       }
     });
   };
 
   shuffleArray = () => {
     // Shuffle array of objects
-    const shuffledArr = this.shuffle(this.state.characters);
+    const shuffledArr = this.shuffle(this.state.countries);
     // Setting 'shuffledArr' as the new state
     this.setState({ shuffledArr });
   };
@@ -79,9 +79,8 @@ class App extends Component {
           currentScore={this.state.currentScore}
           highScore={this.state.highScore}
         />
-        <Jumbotron />
         <MainContent>
-        {this.state.characters.map(country => (
+        {this.state.countries.map(country => (
           <CountryCard
             Clicked={this.state.Clicked}
             handleClick={this.handleClick}
